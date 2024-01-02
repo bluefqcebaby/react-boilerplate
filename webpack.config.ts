@@ -17,7 +17,7 @@ export default (env: IBuildOptions) => {
     port: env.port ?? 7777,
     paths: {
       src: path.resolve(__dirname, 'src'),
-      entry: path.resolve(__dirname, 'src', 'index.tsx'),
+      entry: path.resolve(__dirname, 'src', 'app', 'app-entry.tsx'),
       output: path.resolve(__dirname, 'build'),
       htmlFile: path.resolve(__dirname, 'public', 'index.html'),
     },

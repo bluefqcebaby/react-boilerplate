@@ -18,11 +18,17 @@ export const buildPlugins = (
     }),
     new DefinePlugin({
       __ENV__: JSON.stringify(options.mode),
+      __SUPABASE_URL__: JSON.stringify(
+        'https://elyzrragsopdybylcluq.supabase.co',
+      ),
+      __SUPABASE_KEY__: JSON.stringify(
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVseXpycmFnc29wZHlieWxjbHVxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDM5MDkzMzMsImV4cCI6MjAxOTQ4NTMzM30.YaShoHkAcCAlihRGoWbS1JOO4t7q5q-8D-BlkFeb1rU',
+      ),
     }),
     new CopyPlugin({
       patterns: [
         {
-          from: './src/assets/favicon/',
+          from: './src/shared/assets/favicon/',
           to: './assets/favicon/',
         },
       ],

@@ -1,16 +1,16 @@
-import { ModuleOptions } from 'webpack';
+import { ModuleOptions, RuleSetRule } from 'webpack';
 import { IBuildOptions } from './types';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 
 export const buildModule = (options: IBuildOptions): ModuleOptions => {
   const isDev = options.mode === 'development';
 
-  const assetRule: ModuleOptions['rules'][0] = {
+  const assetRule: RuleSetRule = {
     test: /\.(png|jpg|jpeg|gif)$/i,
     type: 'asset/resource',
   };
 
-  const cssRule: ModuleOptions['rules'][0] = {
+  const cssRule: RuleSetRule = {
     test: /\.css$/,
     use: [
       isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
@@ -19,7 +19,7 @@ export const buildModule = (options: IBuildOptions): ModuleOptions => {
     ],
   };
 
-  const swcLoader: ModuleOptions['rules'][0] = {
+  const swcLoader: RuleSetRule = {
     test: /\.tsx?$/,
     exclude: /node_modules/,
     use: {

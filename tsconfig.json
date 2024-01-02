@@ -6,10 +6,12 @@
     "target": "es5",
     "jsx": "react-jsx",
     "allowJs": true,
+    "strict": true,
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "baseUrl": "./",
+    "resolveJsonModule": true,
     "paths": {
       "@/*": ["src/*"]
     }

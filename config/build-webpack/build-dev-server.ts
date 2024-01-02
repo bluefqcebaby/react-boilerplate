@@ -6,7 +6,7 @@ export const buildDevServer = (options: IBuildOptions): Configuration => {
   const port = options.port;
 
   if (isProd) {
-    return undefined;
+    return {};
   }
 
   return {

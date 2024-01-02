@@ -16,7 +16,7 @@ export const buildWebpack = (options: IBuildOptions): Configuration => {
     resolve: buildResolve(options),
     plugins: buildPlugins(options),
     module: buildModule(options),
-    devtool: isDev ? 'eval' : 'source-map',
+    devtool: 'source-map',
     output: {
       path: paths.output,
       filename: '[name].[contenthash].js',
