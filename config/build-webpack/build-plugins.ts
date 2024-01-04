@@ -5,6 +5,7 @@ import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
 import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
 import CopyPlugin from 'copy-webpack-plugin';
+import Dotenv from 'dotenv-webpack';
 
 export const buildPlugins = (
   options: IBuildOptions,
@@ -13,6 +14,7 @@ export const buildPlugins = (
   const isProd = !isDev;
 
   const plugins: Configuration['plugins'] = [
+    new Dotenv({ silent: false }),
     new HtmlWebpackPlugin({
       template: options.paths.htmlFile,
     }),
@@ -20,9 +22,6 @@ export const buildPlugins = (
       __ENV__: JSON.stringify(options.mode),
       __SUPABASE_URL__: JSON.stringify(
         'https://elyzrragsopdybylcluq.supabase.co',
-      ),
-      __SUPABASE_KEY__: JSON.stringify(
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVseXpycmFnc29wZHlieWxjbHVxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDM5MDkzMzMsImV4cCI6MjAxOTQ4NTMzM30.YaShoHkAcCAlihRGoWbS1JOO4t7q5q-8D-BlkFeb1rU',
       ),
     }),
     new CopyPlugin({

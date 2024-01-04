@@ -4,9 +4,11 @@ import { useAuth } from '@/shared/hooks/data';
 import * as UI from '@/shared/ui-kit';
 import { ROUTES } from '@/shared/constants/routes';
 import { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 
-export const AppLayout = () => {
+export const App = () => {
   const { session, isLoading, isError } = useAuth();
+  const { t } = useTranslation();
 
   const navigate = useNavigate();
 
@@ -21,7 +23,7 @@ export const AppLayout = () => {
   }
 
   if (isError) {
-    return <h1>Не удалось загрузить сессию. Попробуйте позже.</h1>;
+    return <h1>{t('common.no_session')}</h1>;
   }
 
   return <Outlet />;

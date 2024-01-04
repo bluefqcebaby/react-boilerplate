@@ -4,13 +4,6 @@ import 'webpack-dev-server';
 import { IBuildOptions } from './config/build-webpack/types';
 import { buildWebpack } from './config/build-webpack';
 
-type Mode = 'development' | 'production';
-
-interface IEnvVariables {
-  mode?: Mode;
-  port?: number;
-}
-
 export default (env: IBuildOptions) => {
   const config: webpack.Configuration = buildWebpack({
     mode: env.mode ?? 'development',

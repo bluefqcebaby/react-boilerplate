@@ -1,6 +1,6 @@
 import { getSession } from '@/shared/api/auth';
 import { QUERY_KEYS } from '@/shared/constants/query-keys';
-import { useQuery, useQueryClient } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 
 export const useAuth = () => {
   // const queryClient = useQueryClient();

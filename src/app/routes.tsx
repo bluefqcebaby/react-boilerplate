@@ -1,29 +1,43 @@
 import { Navigate, createBrowserRouter } from 'react-router-dom';
-import { AppLayout } from './app-layout';
-import { Suspense } from 'react';
+import { App } from './app';
+import { PropsWithChildren, Suspense } from 'react';
 import { ROUTES } from '@/shared/constants/routes';
 import { LazyLoginPage } from '@/pages/login';
 import * as UI from '@/shared/ui-kit';
+import { baseLayout } from './layouts/baseLayout';
+import { LazyTodoList } from '@/pages/todo-list';
+
+const SuspenseWrapper = (props: PropsWithChildren) => {
+  return <Suspense fallback={<UI.Spinner type="full-page" />} {...props} />;
+};
 
 export const routes = createBrowserRouter([
   {
-    path: '/',
-    element: <AppLayout />,
+    element: <App />,
     children: [
       {
         path: '/',
-        element: <Navigate to={ROUTES.TODO_LIST.FULL_PATH} replace />,
+        element: <Navigate to={ROUTES.TODO_LIST.FULL_PATH} />,
       },
       {
-        path: 'todo-list',
-        element: <div>todo list</div>,
+        element: baseLayout,
+        children: [
+          {
+            path: ROUTES.TODO_LIST.FULL_PATH,
+            element: (
+              <SuspenseWrapper>
+                <LazyTodoList />
+              </SuspenseWrapper>
+            ),
+          },
+        ],
       },
       {
-        path: ROUTES.LOGIN.PATH,
+        path: ROUTES.LOGIN.FULL_PATH,
         element: (
-          <Suspense fallback={<UI.Spinner />}>
+          <SuspenseWrapper>
             <LazyLoginPage />
-          </Suspense>
+          </SuspenseWrapper>
         ),
       },
     ],

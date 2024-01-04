@@ -1,13 +1,25 @@
-import {
-  Button as MUIButton,
-  ButtonProps,
-  dividerClasses,
-} from '@mui/material';
+import { Button as MUIButton, ButtonProps } from '@mui/material';
 import { FC } from 'react';
+import { Spinner } from '../spinner';
 
-export const Button: FC<ButtonProps> = ({
+interface IProps extends ButtonProps {
+  isLoading?: boolean;
+}
+
+export const Button: FC<IProps> = ({
   variant = 'contained',
+  isLoading,
+  children,
   ...props
 }) => {
-  return <MUIButton variant={variant} {...props} />;
+  return (
+    <MUIButton
+      className="h-14"
+      disabled={isLoading}
+      variant={variant}
+      {...props}
+    >
+      {isLoading ? <Spinner /> : children}
+    </MUIButton>
+  );
 };

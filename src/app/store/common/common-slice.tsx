@@ -22,7 +22,7 @@ export const counterSlice = createSlice({
       state.value += action.payload;
     },
   },
-  extraReducers: (builder) => {},
+  extraReducers: () => {},
 });
 
 export default counterSlice.reducer;

@@ -6,7 +6,6 @@ import { buildResolve } from './build-resolve';
 import { buildPlugins } from './build-plugins';
 
 export const buildWebpack = (options: IBuildOptions): Configuration => {
-  const isDev = options.mode === 'development';
   const { mode, paths } = options;
 
   return {
