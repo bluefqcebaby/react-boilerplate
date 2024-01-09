@@ -6,10 +6,8 @@ interface IProps extends FabProps {
   isLoading?: boolean;
 }
 
-export const Fab: FC<IProps> = ({ isLoading, children, ...props }) => {
-  return (
-    <MuiFab disabled={isLoading} {...props}>
-      {isLoading ? <Spinner /> : children}
-    </MuiFab>
-  );
-};
+export const Fab: FC<IProps> = ({ isLoading, children, ...props }) => (
+  <MuiFab disabled={isLoading} {...props}>
+    {isLoading ? <Spinner /> : children}
+  </MuiFab>
+);

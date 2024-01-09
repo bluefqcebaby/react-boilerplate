@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
-import * as UI from '@/shared/ui-kit';
 import { FC, HTMLProps, useState } from 'react';
+import * as UI from '@/shared/ui-kit';
 import { AddTodoModal } from './add-todo-modal';
 
 interface IProps extends HTMLProps<HTMLDivElement> {}

@@ -3,7 +3,7 @@ import { IBuildOptions } from './types';
 
 export const buildDevServer = (options: IBuildOptions): Configuration => {
   const isProd = options.mode === 'production';
-  const port = options.port;
+  const { port } = options;
 
   if (isProd) {
     return {};

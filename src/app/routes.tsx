@@ -1,15 +1,15 @@
 import { Navigate, createBrowserRouter } from 'react-router-dom';
-import { App } from './app';
 import { PropsWithChildren, Suspense } from 'react';
+import { App } from './app';
 import { ROUTES } from '@/shared/constants/routes';
 import { LazyLoginPage } from '@/pages/login';
 import * as UI from '@/shared/ui-kit';
 import { baseLayout } from './layouts/baseLayout';
 import { LazyTodoList } from '@/pages/todo-list';
 
-const SuspenseWrapper = (props: PropsWithChildren) => {
-  return <Suspense fallback={<UI.Spinner type="full-page" />} {...props} />;
-};
+const SuspenseWrapper = (props: PropsWithChildren) => (
+  <Suspense fallback={<UI.Spinner type="full-page" />} {...props} />
+);
 
 export const routes = createBrowserRouter([
   {

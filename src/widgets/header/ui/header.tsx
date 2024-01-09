@@ -1,8 +1,8 @@
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import LogoutIcon from '@mui/icons-material/Logout';
 import { signOut } from '@/shared/api/auth/sign-out';
 import { QUERY_KEYS } from '@/shared/constants/query-keys';
 import * as UI from '@/shared/ui-kit';
-import LogoutIcon from '@mui/icons-material/Logout';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 export const Header = () => {
   const queryClient = useQueryClient();

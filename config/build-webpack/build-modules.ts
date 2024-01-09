@@ -1,6 +1,6 @@
 import { ModuleOptions, RuleSetRule } from 'webpack';
-import { IBuildOptions } from './types';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import { IBuildOptions } from './types';
 
 export const buildModule = (options: IBuildOptions): ModuleOptions => {
   const isDev = options.mode === 'development';
@@ -12,11 +12,7 @@ export const buildModule = (options: IBuildOptions): ModuleOptions => {
 
   const cssRule: RuleSetRule = {
     test: /\.css$/,
-    use: [
-      isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
-      'css-loader',
-      'postcss-loader',
-    ],
+    use: [isDev ? 'style-loader' : MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader'],
   };
 
   const swcLoader: RuleSetRule = {

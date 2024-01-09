@@ -1,10 +1,10 @@
 import { createRoot } from 'react-dom/client';
 import { RouterProvider } from 'react-router-dom';
-import { routes } from './routes';
-import { store } from './store';
 import { Provider } from 'react-redux';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ToastContainer } from 'react-toastify';
+import { routes } from './routes';
+import { store } from './store';
 import '@/shared/lib/i18n';
 import 'react-toastify/dist/ReactToastify.min.css';
 

@@ -1,11 +1,20 @@
 module.exports = {
+  env: {
+    browser: true,
+  },
   parser: '@typescript-eslint/parser', // Specifies the ESLint parser
   extends: [
     'plugin:react/recommended', // Uses the recommended rules from @eslint-plugin-react
     'plugin:@typescript-eslint/recommended', // Uses the recommended rules from @typescript-eslint/eslint-plugin
-    'plugin:prettier/recommended', // Enables eslint-plugin-prettier and eslint-config-prettier. This will display prettier errors as ESLint errors. Make sure this is always the last configuration in the extends array.
+    'plugin:prettier/recommended',
     'plugin:react-hooks/recommended',
+    'airbnb',
   ],
+  globals: {
+    AppDispatch: 'readonly',
+    RootState: 'readonly',
+    __SUPABASE_URL__: 'readonly',
+  },
   parserOptions: {
     ecmaVersion: 2020, // Allows for the parsing of modern ECMAScript features
     sourceType: 'module', // Allows for the use of imports
@@ -25,6 +34,28 @@ module.exports = {
     quotes: ['error', 'single'],
     'prefer-const': 'error',
     'no-var': 'error',
+    'max-len': ['error', { code: 120 }],
+    'react/function-component-definition': [
+      2,
+      {
+        namedComponents: 'arrow-function',
+        unnamedComponents: 'arrow-function',
+      },
+    ],
+    'react/jsx-wrap-multilines': 'off',
+    'import/extensions': 'off',
+    'import/no-unresolved': 'off',
+    'implicit-arrow-linebreak': 'off',
+    'function-paren-newline': 'off',
+    'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx', '.ts', '.tsx'] }],
+    'import/no-extraneous-dependencies': ['error', { devDependencies: ['./config/**/*', 'webpack.config.ts'] }],
+    'react/jsx-props-no-spreading': 'off',
+    'import/prefer-default-export': 'off',
+    'no-param-reassign': 'off',
+    'no-underscore-dangle': 'off',
+    'react/require-default-props': 'off',
+    'object-curly-newline': 'off',
+    'no-unused-vars': ['error', { argsIgnorePattern: '^_', varsIgnorePattern: '^_' }],
     eqeqeq: 'error',
   },
   settings: {

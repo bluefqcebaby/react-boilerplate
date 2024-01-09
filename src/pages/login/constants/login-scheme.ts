@@ -1,5 +1,5 @@
-import i18n from '@/shared/lib/i18n';
 import { z } from 'zod';
+import i18n from '@/shared/lib/i18n';
 
 const basePath = 'login_form.validation';
 

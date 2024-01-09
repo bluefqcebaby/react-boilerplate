@@ -1,15 +1,15 @@
+import sx from 'classnames';
+import { useTranslation } from 'react-i18next';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { Typography } from '@mui/material';
 import { getTodos } from '@/shared/api/todos/get-todos';
 import { QUERY_KEYS } from '@/shared/constants/query-keys';
 import { withAuth } from '@/shared/lib/hocs/withAuth';
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import * as UI from '@/shared/ui-kit';
-import { Typography } from '@mui/material';
-import { useTranslation } from 'react-i18next';
 import { AddTodo } from '@/features/add-todo';
 import { updateTodo } from '@/shared/api/todos/update-todo';
 import { ITodo } from '@/shared/types/todo';
 import { useRealtime } from '../helpers/use-realtime';
-import sx from 'classnames';
 
 const TodoListPage = () => {
   const { t } = useTranslation(['app'], { keyPrefix: 'todo' });
@@ -24,9 +24,7 @@ const TodoListPage = () => {
   const { mutate, isPending } = useMutation({
     mutationFn: updateTodo,
     onMutate: (newTodo) => {
-      const previousTodos = queryClient.getQueryData([
-        QUERY_KEYS.GET_TODOS,
-      ]) as ITodo[];
+      const previousTodos = queryClient.getQueryData([QUERY_KEYS.GET_TODOS]) as ITodo[];
 
       queryClient.setQueryData([QUERY_KEYS.GET_TODOS], (old: ITodo[]) =>
         old.map((elem) => (elem.id === newTodo.id ? newTodo : elem)),
@@ -63,6 +61,7 @@ const TodoListPage = () => {
         <div className="flex gap-3 flex-wrap">
           {data.map((todo) => (
             <UI.FormControlLabel
+              key={todo.id}
               className={sx('border p-3 rounded-xl items-center', {
                 'line-through': todo.isCompleted,
               })}
@@ -70,12 +69,9 @@ const TodoListPage = () => {
                 <UI.Checkbox
                   checked={todo.isCompleted}
                   disabled={isPending}
-                  onChange={(e) =>
-                    mutate({ ...todo, isCompleted: e.target.checked })
-                  }
+                  onChange={(e) => mutate({ ...todo, isCompleted: e.target.checked })}
                 />
               }
-              key={todo.id}
               label={todo.name}
               labelPlacement="top"
             />

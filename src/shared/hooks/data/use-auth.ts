@@ -1,6 +1,6 @@
+import { useQuery } from '@tanstack/react-query';
 import { getSession } from '@/shared/api/auth';
 import { QUERY_KEYS } from '@/shared/constants/query-keys';
-import { useQuery } from '@tanstack/react-query';
 
 export const useAuth = () => {
   // const queryClient = useQueryClient();
@@ -20,5 +20,10 @@ export const useAuth = () => {
   //   return subscription.unsubscribe;
   // }, []);
 
-  return { session: data, isLoading, isError, error };
+  return {
+    session: data,
+    isLoading,
+    isError,
+    error,
+  };
 };

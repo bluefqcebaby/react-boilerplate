@@ -1,4 +1,3 @@
-import { IBuildOptions } from './types';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import webpack, { Configuration, DefinePlugin } from 'webpack';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
@@ -6,10 +5,9 @@ import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
 import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
 import CopyPlugin from 'copy-webpack-plugin';
 import Dotenv from 'dotenv-webpack';
+import { IBuildOptions } from './types';
 
-export const buildPlugins = (
-  options: IBuildOptions,
-): Configuration['plugins'] => {
+export const buildPlugins = (options: IBuildOptions): Configuration['plugins'] => {
   const isDev = options.mode === 'development';
   const isProd = !isDev;
 
@@ -20,9 +18,7 @@ export const buildPlugins = (
     }),
     new DefinePlugin({
       __ENV__: JSON.stringify(options.mode),
-      __SUPABASE_URL__: JSON.stringify(
-        'https://elyzrragsopdybylcluq.supabase.co',
-      ),
+      __SUPABASE_URL__: JSON.stringify('https://elyzrragsopdybylcluq.supabase.co'),
     }),
     new CopyPlugin({
       patterns: [
@@ -35,13 +31,7 @@ export const buildPlugins = (
   ];
 
   if (isDev) {
-    plugins.push(
-      ...[
-        new webpack.ProgressPlugin(),
-        new ReactRefreshWebpackPlugin(),
-        new ForkTsCheckerWebpackPlugin(),
-      ],
-    );
+    plugins.push(...[new webpack.ProgressPlugin(), new ReactRefreshWebpackPlugin(), new ForkTsCheckerWebpackPlugin()]);
   }
 
   if (isProd) {
